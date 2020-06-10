@@ -34,21 +34,23 @@ export default props => {
             <input type="text" placeholder="Insira o nome do cartão..." 
                     name="txtCard" id="txtCard"
                     value={cardName} onChange={e => setCardName(e.target.value)}/>
-            <Button onClick={_ => addCard()} style={{margin:'0px',padding:'0px 5px 0px 5px'}}>Enviar</Button>
+            <Button onClick={_ => addCard()} style={{marginLeft:'10px',padding:'0px 5px 0px 5px'}}>Enviar</Button>
         </p>) 
         : <Button onClick={_ => setCardAdd(true)} style={{marginTop: '10px'}} 
                     variant="light" >Adicionar novo cartão</Button>
     }
+
     function addCard() {
         if(cardName.length>1){
             const Card = {
                 title:cardName,
                 desc:" "
             }
-            setList(list.cards.push(Card))
+            let lista = list
+            lista.cards.push(Card)
+            setList(lista)
             setCardAdd(false)
             setCardName('')
-            props.addC(list)
         }
     }
     return(
