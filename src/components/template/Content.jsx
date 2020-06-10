@@ -8,6 +8,7 @@ export default class Content extends React.Component {
     constructor(props){
         super(props)
         this.addList = this.addList.bind(this)
+        this.addCard = this.addCard.bind(this)
         this.state={
             listName: '',
             listAdd: false,
@@ -34,7 +35,7 @@ export default class Content extends React.Component {
         return (
             <div className="lists Container">
                 {this.state.lists.map((list,i) =>{
-                    return <List list={list} key={i+' l'} />     
+                    return <List addC={_ => this.addCard} list={list} key={i+' l'} />     
                 })}
 
                 <div style={{padding:'15px'}}>
@@ -57,8 +58,10 @@ export default class Content extends React.Component {
         console.log(e.target.value)
     }
 
-    addCard(name){
-        
+    addCard(list){
+        this.setState({
+            lists: list
+        })
     }
 
     render(){

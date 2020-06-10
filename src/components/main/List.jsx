@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap'
 
 
 export default props => {
-    const list = props.list
+    const [list, setList] = useState(props.list)
     const [cardAdd, setCardAdd] = useState(false)
     const [cardName, setCardName] = useState('')
 
@@ -40,11 +40,20 @@ export default props => {
                     variant="light" >Adicionar novo cartão</Button>
     }
     function addCard() {
-        
+        if(cardName.length>1){
+            const Card = {
+                title:cardName,
+                desc:" "
+            }
+            setList(list.cards.push(Card))
+            setCardAdd(false)
+            setCardName('')
+            props.addC(list)
+        }
     }
     return(
         <Fragment>
-            {showList(list)}
+            {showList(props.list)}
         </Fragment>
     )
 }
